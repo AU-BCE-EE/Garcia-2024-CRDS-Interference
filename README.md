@@ -5,6 +5,16 @@ Data and analysis on investigatation of interference on CRDS instruments.
 Jesper Nørlem Kamp.
 Contact information here: <https://au.dk/jk@bce>.
 
+# Contributors
+Pablo Garcia <https://au.dk/au615105@bce>
+
+Anna Holm Støckler <https://au.dk/anna@bce>
+
+Anders Feilberg <https://au.dk/af@bce>
+
+Jesper Nørlem Kamp <https://au.dk/jk@bce>
+
+
 # Submitted paper
 The contents of this repo are presented in the following manuscript:
 
