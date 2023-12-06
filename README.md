@@ -5,10 +5,10 @@ Data and analysis on investigatation of interference on CRDS instruments.
 Jesper Nørlem Kamp.
 Contact information here: <https://au.dk/jk@bce>.
 
-# Published paper
-The contents of this repo are presented in the following paper, which is open-access:
+# Submitted paper
+The contents of this repo are presented in the following manuscript:
 
-xx
+Garcia, P., Støckler, A. H., Feilberg, A., Kamp, J., N. Investigation of non-target gas interferences on a multi-gas cavity ring-down spectrometer. Submitted for Atmospheric Measurement Techniques.
 
 # Overview
 This repo contains all the data and data processing scripts needed to produce the results presented in the paper listed above.
