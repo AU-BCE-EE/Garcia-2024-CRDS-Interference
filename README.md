@@ -18,15 +18,15 @@ The scripts run in R (<https://www.r-project.org/>) and require several add-on p
 
 ## `H2O Interferences`
 Measurement data and scripts on H2O interference.
-Use scripts `H2O_Test1&2` and `H2O_Test3`.
+Use scripts `H2O_Test1&2.R` and `H2O_Test3.R`.
 
-## `NH3 Interferences'
+## `NH3 Interferences`
 Measurement data and scripts on NH3 interference.
-Use scripts `Calibration_NH3` and `NH3_Interferences`.
+Use scripts `Calibration_NH3.R` and `NH3_Interferences.R`.
 
-## `VOC Interferences'
+## `VOC Interferences`
 Measurement data and scripts on VOC interference.
-Use scripts `PTRdata_Picarrodata_Timeallign_Example` and `VOC_Interferences`.
+Use scripts `PTRdata_Picarrodata_Timeallign_Example.R` and `VOC_Interferences.R`.
 
 # Links to paper
 This section give the sources of tables and figures presented in the paper.
