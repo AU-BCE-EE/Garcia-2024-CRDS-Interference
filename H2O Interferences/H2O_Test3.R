@@ -6,14 +6,14 @@ library(writexl)
 library(scales)
 library(egg)
 
-### Interferences of H2O###   
+### Interferences of H2O Test3 (different G2509)###   
 
 ##Extract data from own picarro##  
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo Garc?a/Picarro interferences (Anna&Pablo)/Interferences/H2O")
+setwd(".../H2O Interferences")
 list_of_files <- list.files(path="G2508 Own",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
 L<-length(list_of_files)
 
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo Garc?a/Picarro interferences (Anna&Pablo)/Interferences/H2O/G2508 own")
+setwd(".../H2O Interferences/G2508 own")
 
 #Read all Picarro from the folder
 getstats<- function(Picarro){    #Open each Dat file in a list 
@@ -211,8 +211,7 @@ Coeff_dt<-coefficients(Eq_C_dt)
 CH4_detrend<-CH4-predict(Eq_C_dt)
 CH4_detrend<-CH4_detrend+mean(CH4)
 
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo Garc?a/Papers/Interferences pictures/H2O repetition")
-
+setwd(".../H2O Interferences")
 #Control plot
 ##Duration vector##
 df_H2O<-cbind.data.frame(Time_All,CH4_dry_All,H2O_All)
@@ -269,7 +268,7 @@ sd_CH4_dry_detrend<-c(sd(CH4_detrend[(80000-79999):(89000-79999)]),sd(CH4_detren
 
 df_CH4$y<-mean_CH4_dry_detrend
 df_CH4$sd_CH4_dry<-sd_CH4_dry_detrend
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo Garc?a/Papers/Interferences pictures/H2O repetition")
+
 ### PLOTS ###
 ## Supplementary material, Full calibration ##
 A<-ggplot()+
@@ -379,7 +378,7 @@ pCH4<-ggplot(data=df_CH4,aes(x,y,color=Group))+
         legend.position = "none")
 ggsave(plot=pCH4,"H2O vs CH4.png", width = 8, height = 5)
 
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo Garc?a/Papers")
+setwd(".../H2O Interferences")
 write.table(df_N2O, file = "H2O_N2O.txt", sep = "\t", row.names = TRUE, col.names = NA)
 write.table(df_NH3, file = "H2O_NH3.txt", sep = "\t", row.names = TRUE, col.names = NA)
 write.table(df_CH4, file = "H2O_CH4.txt", sep = "\t", row.names = TRUE, col.names = NA)

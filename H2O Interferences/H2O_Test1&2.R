@@ -563,3 +563,198 @@ legend <- get_only_legend(plot1_legend)
 B<-grid.arrange(arrangeGrob(pNH3,pN2O,pCH4, ncol = 3,nrow=1),
                 legend, nrow = 2, heights = c(10, 1))
 ggsave(plot=B,"Main1_H2O_Interferences.png", width = 8, height = 5)
+
+
+### Extra for supplementary material ###
+x<-c(rep(df_H2O_low$Time_All_lowhigh[30100:42121],4),
+     rep(df_H2O_low$Time_NH3_lowhigh[11000:42121]+minutes(178),2),
+     rep(df_H2O_low$Time_BP_lowhigh[13800:42121]+minutes(119),2))
+y<-c(df_H2O_low$H2O_All_lowhigh[30100:42121],df_H2O_low$NH3_All_lowhigh[30100:42121],
+     df_H2O_low$CH4_All_lowhigh[30100:42121],df_H2O_low$N2O_All_lowhigh[30100:42121],
+     df_H2O_low$H2O_NH3_lowhigh[11000:42121],df_H2O_low$NH3d_NH3_lowhigh[11000:42121],
+     df_H2O_low$H2O_BP_lowhigh[13800:42121],df_H2O_low$CH4d_BP_lowhigh[13800:42121])
+
+## Test 1
+
+##Make a duration vector
+d_All<-1
+for (i in 1:length(df_H2O_low$Time_All_lowhigh[30100:42121])){
+  d_All[i]<-difftime(df_H2O_low$Time_All_lowhigh[30099+i],df_H2O_low$Time_All_lowhigh[30100],units="mins")
+}
+d_NH3<-1
+for (i in 1:length(df_H2O_low$Time_NH3_lowhigh[11000:42121])){
+  d_NH3[i]<-difftime(df_H2O_low$Time_NH3_lowhigh[10999+i],df_H2O_low$Time_NH3_lowhigh[11000],units="mins")
+}
+d_BP<-1
+for (i in 1:length(df_H2O_low$Time_BP_lowhigh[13800:42121])){
+  d_BP[i]<-difftime(df_H2O_low$Time_BP_lowhigh[13799+i],df_H2O_low$Time_BP_lowhigh[13800],units="mins")
+}
+####################################
+pH2O<-ggplot()+
+  geom_line(aes(x=d_All,y=df_H2O_low$H2O_All_lowhigh[30100:42121],color="G2509"))+
+  scale_y_continuous(name = expression(paste("H"[2]* "O concentration (%)")),labels = number_format(accuracy = 0.01))+
+  xlab("Time (min)")+
+  geom_line(aes(x=d_NH3,y=df_H2O_low$H2O_NH3_lowhigh[11000:42121],color="G2103"))+
+  geom_line(aes(x=d_BP,y=df_H2O_low$H2O_BP_lowhigh[13800:42121],color="G4301"))+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  coord_cartesian(xlim=c(d_All[1],d_All[28322]))+
+  theme(legend.title=element_blank(),legend.text=element_text(size=6),
+        legend.background = element_rect(fill='transparent'))
+
+pNH3<-ggplot()+
+  geom_line(aes(x=d_All,y=df_H2O_low$NH3_All_lowhigh[30100:42121],color="G2509"))+
+  scale_y_continuous(name = expression(paste("NH"[3]* " concentration (ppb)")),labels = number_format(accuracy = 0.01))+
+  xlab("")+
+  geom_line(aes(x=d_NH3,y=df_H2O_low$NH3d_NH3_lowhigh[11000:42121],color="G2103"))+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  #coord_cartesian(xlim=c(d_All,df_H2O_low$Time_All_lowhigh[42121]))+
+  theme(legend.title=element_blank())+
+  scale_colour_manual("",values=c("#F8766D","#00BA38","#619CFF"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+pNH3<-tag_facet(pNH3,tag_pool = letters[1])
+
+
+pCH4<-ggplot()+
+  geom_line(aes(x=df_H2O_low$Time_All_lowhigh[30100:42121],y=df_H2O_low$CH4_All_lowhigh[30100:42121],color="G2509"))+
+  scale_y_continuous(name = expression(paste("CH"[4]* " concentration (ppm)")))+
+  xlab("")+
+  geom_line(aes(x=df_H2O_low$Time_BP_lowhigh[13800:42121]+minutes(119),y=df_H2O_low$CH4d_BP_lowhigh[13800:42121],color="G4301"))+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  coord_cartesian(xlim=c(df_H2O_low$Time_All_lowhigh[30100],df_H2O_low$Time_All_lowhigh[42121]))+
+  theme(legend.title=element_blank())+
+  scale_colour_manual("",values=c("#00BA38","#619CFF"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+pN2O<-ggplot()+
+  geom_line(aes(x=df_H2O_low$Time_All_lowhigh[30100:42121],y=df_H2O_low$N2O_All_lowhigh[30100:42121],color="G2509"))+
+  scale_y_continuous(name = expression(paste("N"[2]* "O concentration (ppm)")))+
+  xlab("")+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  coord_cartesian(xlim=c(df_H2O_low$Time_All_lowhigh[30100],df_H2O_low$Time_All_lowhigh[42121]))+
+  theme(legend.title=element_blank())+
+  scale_colour_manual("",values=c("#00BA38","#619CFF"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+S<-grid.arrange(arrangeGrob(pNH3,pN2O,pCH4,pH2O, ncol = 1,nrow=4))
+ggsave(plot=S,"S1_H2O_Interferences.png", width = 8, height = 8)
+
+## Test 2
+##Make a duration vector
+d_All2<-1
+for (i in 1:length(df_H2O_high$Time_All_highlow)){
+  d_All2[i]<-difftime(df_H2O_high$Time_All_highlow[0+i],df_H2O_high$Time_All_highlow[1],units="mins")
+}
+d_NH32<-1
+for (i in 1:length(df_H2O_high$Time_NH3_highlow)){
+  d_NH32[i]<-difftime(df_H2O_high$Time_NH3_highlow[0+i],df_H2O_high$Time_NH3_highlow[1],units="mins")
+}
+
+####################################
+pH2O2<-ggplot()+
+  geom_line(aes(x=d_All2,y=df_H2O_high$H2O_All_highlow,color="G2509"))+
+  scale_y_continuous(name = expression(paste("")),labels = number_format(accuracy = 0.01))+
+  xlab("Time (min)")+
+  geom_line(aes(x=d_NH32,y=df_H2O_high$H2O_NH3_highlow,color="G2103"))+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  coord_cartesian(xlim=c(d_All2[1],d_All2[5486]))+
+  scale_colour_manual("",values=c("#F8766D","#00BA38","#619CFF"))+
+  theme(legend.title=element_blank())
+
+
+pNH32<-ggplot()+
+  geom_line(aes(x=d_All2,y=df_H2O_high$NH3_All_highlow,color="G2509"))+
+  scale_y_continuous(name = expression(paste("")),labels = number_format(accuracy = 0.1))+
+  xlab("")+
+  geom_line(aes(x=d_NH32,y=df_H2O_high$NH3d_NH3_highlow,color="G2103"))+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  #coord_cartesian(xlim=c(df_H2O_high$Time_All_highlow[1],df_H2O_high$Time_All_highlow[5486]))+
+  theme(legend.title=element_blank())+
+  scale_colour_manual("",values=c("#F8766D","#00BA38","#619CFF"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+pNH32<-tag_facet(pNH32,tag_pool = letters[2])
+
+
+pCH42<-ggplot()+
+  geom_line(aes(x=df_H2O_high$Time_All_highlow,y=df_H2O_high$CH4_All_highlow,color="G2509"))+
+  scale_y_continuous(name = expression(paste("")),labels = number_format(accuracy = 0.01))+
+  xlab("")+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  coord_cartesian(xlim=c(df_H2O_high$Time_All_highlow[1],df_H2O_high$Time_All_highlow[5486]))+
+  theme(legend.title=element_blank())+
+  scale_colour_manual("",values=c("#00BA38","#619CFF"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+pN2O2<-ggplot()+
+  geom_line(aes(x=df_H2O_high$Time_All_highlow,y=df_H2O_high$N2O_All_highlow,color="G2509"))+
+  scale_y_continuous(name = expression(paste("")))+
+  xlab("")+
+  theme(panel.border =element_rect(colour = "grey", fill=NA))+
+  theme(axis.line = element_line(colour = "black"))+
+  theme(panel.spacing.x=unit(2, "lines"))+
+  theme_bw()+theme(panel.grid=element_blank(),legend.position = "none")+
+  coord_cartesian(xlim=c(df_H2O_high$Time_All_highlow[1],df_H2O_high$Time_All_highlow[5486]))+
+  theme(legend.title=element_blank())+
+  scale_colour_manual("",values=c("#00BA38","#619CFF"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+S<-grid.arrange(arrangeGrob(pNH32,pN2O2,pCH42,pH2O2, ncol = 1,nrow=4))
+ggsave(plot=S,"S2_H2O_Interferences.png", width = 8, height = 8)
+
+x<-1:3
+y<-1:3
+CRDS<-c("G2509", "G2103", "G4301")
+df_legend<-cbind.data.frame(x,y,CRDS)
+plot1_legend <- ggplot(df_legend,
+                       aes(x = x, y = y, color=CRDS)) +
+  
+  geom_point(size=3)+theme_bw()+
+  theme(legend.title=element_blank(),
+        legend.background = element_rect(fill='transparent'))+
+  theme(legend.position = "bottom")
+
+# function to extract legend from plot
+
+legend <- get_only_legend(plot1_legend)   
+
+S<-grid.arrange(arrangeGrob(pNH3,pNH32,pNH33,pN2O,pN2O2,pN2O3,pCH4,pCH42,pCH43,pH2O,pH2O2,pH2O3, ncol = 3,nrow=4),
+                legend, nrow = 2, heights = c(10, 1))
+ggsave(plot=S,"S1-3_H2O_Interferences.png", width = 8, height = 10)
+
+### Detrend plots ###
+
+#CH4 detrending
+S<-grid.arrange(arrangeGrob(Cp1,CpBP,Cp2,Cp3, ncol = 2,nrow=2))
+ggsave(plot=S,"S2_CH4_detrend.png", width = 8, height = 8)

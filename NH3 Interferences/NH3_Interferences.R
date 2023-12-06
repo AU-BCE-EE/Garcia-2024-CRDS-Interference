@@ -8,11 +8,11 @@ library(writexl)
 ### Interferences of NH3-N2O###   
 
 ##Extract data from our own picarro##  
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O")
+setwd(".../NH3 Interferences")
 list_of_files <- list.files(path="Own all Picarro",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
 L<-length(list_of_files)
 
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O/Own all Picarro")
+setwd(".../NH3 Interferences/Own all Picarro")
 
 #Read all Picarro from the folder
 getstats<- function(Picarro){    #Open each Dat file in a list 
@@ -39,11 +39,11 @@ Dat_All$date.time<-paste(Dat_All$DATE,Dat_All$TIME)
 Dat_All$date.time<-as.POSIXct(Dat_All$date.time,format="%Y-%m-%d %H:%M:%S")
 
 ##Extract data from our own picarro from an NH3 calibration##  
-setwd("O:/Tech_BCE/Environmental Engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Picarro calibration/G2508 own")
-list_of_files <- list.files(path="09",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
+setwd(".../NH3 Interferences")
+list_of_files <- list.files(path="G2508 own",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
 L<-length(list_of_files)
 
-setwd("O:/Tech_BCE/Environmental Engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Picarro calibration/G2508 own/09")
+setwd(".../NH3 Interferences/G2508 own")
 #Read all Picarro from the folder
 getstats<- function(Picarro){    #Open each Dat file in a list 
   
@@ -69,11 +69,11 @@ Dat_Cal$date.time<-paste(Dat_Cal$DATE,Dat_Cal$TIME)
 Dat_Cal$date.time<-as.POSIXct(Dat_Cal$date.time,format="%Y-%m-%d %H:%M:%S")
 
 ##Extract data from NH3 picarro##  
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O")
+setwd(".../NH3 Interferences")
 list_of_files <- list.files(path="NH3 Picarro",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
 L<-length(list_of_files)
 
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O/NH3 Picarro")
+setwd(".../NH3 Interferences/NH3 Picarro")
 
 #Read all Picarro from the folder
 getstats<- function(Picarro){    #Open each Dat file in a list 
@@ -100,11 +100,11 @@ Dat_NH3$date.time<-paste(Dat_NH3$DATE,Dat_NH3$TIME)
 Dat_NH3$date.time<-as.POSIXct(Dat_NH3$date.time,format="%Y-%m-%d %H:%M:%S")
 
 ##Extract data from BackPack picarro##  
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O")
+setwd(".../NH3 Interferences")
 list_of_files <- list.files(path="BackPack",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
 L<-length(list_of_files)
 
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O/BackPack")
+setwd(".../NH3 Interferences/BackPack")
 
 #Read all Picarro from the folder
 getstats<- function(Picarro){    #Open each Dat file in a list 
@@ -130,36 +130,6 @@ Dat_BP<-bind_rows(Dat_BP, .id = "column_label") #Join all elements of the list i
 Dat_BP$date.time<-paste(Dat_BP$DATE,Dat_BP$TIME)
 Dat_BP$date.time<-as.POSIXct(Dat_BP$date.time,format="%Y-%m-%d %H:%M:%S")
 
-##Extract data from our own picarro background##  
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O")
-list_of_files <- list.files(path="Background_zero air",pattern = "*.dat",recursive=TRUE) ##Read data from Picarro
-L<-length(list_of_files)
-
-setwd("O:/Tech_BCE/Environmental engineering/Air Quality Engineering/Picarro interferences (Anna&Pablo)/Interferences/NH3_N2O/Background_zero air")
-
-#Read all Picarro from the folder
-getstats<- function(Picarro){    #Open each Dat file in a list 
-  
-  listofdfs <- list() 
-  
-  for(i in 1:length(Picarro)){ #Loop through the numbers of ID's instead of the ID's
-    
-    
-    
-    Pic_Data<-read.table(list_of_files[i],header=TRUE)
-    listofdfs[[i]] <- Pic_Data # save your dataframes into the list
-  }
-  
-  return(listofdfs) #Return the list of dataframes.
-}
-
-Pic_id<- as.character(c(1:L))
-Dat_BG<-getstats(Picarro = Pic_id) #Able to call each Picarro file
-Dat_BG<-bind_rows(Dat_BG, .id = "column_label") #Join all elements of the list in one dataframe
-
-#Change format of date and time to be plotted
-Dat_BG$date.time<-paste(Dat_BG$DATE,Dat_BG$TIME)
-Dat_BG$date.time<-as.POSIXct(Dat_BG$date.time,format="%Y-%m-%d %H:%M:%S")
 
 ### N2O fixed, NH3 changing ###
 ##### Data treatment for publication #####
@@ -193,22 +163,19 @@ df_control_cal<-cbind.data.frame(mean_N2O_cal,mean_NH3_cal,sd_N2O_cal,sd_NH3_cal
 df_Allpoints<-cbind.data.frame(Time_All_N2ONH3,NH3_All_N2ONH3,N2O_All_N2ONH3)
 df_Calpoints<-cbind.data.frame(Time_Cal_N2ONH3,NH3_Cal_N2ONH3,N2O_Cal_N2ONH3)
 
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo Garc?a/Papers")
+setwd(".../NH3 Interferences")
+##Save text files
 write.table(df_control, file = "Control_NH3N2O interferences.txt", sep = "\t", row.names = TRUE, col.names = NA)
 write.table(df_Allpoints, file = "All_NH3N2O interferences.txt", sep = "\t", row.names = TRUE, col.names = NA)
 write.table(df_control_cal, file = "Control_NH3N2O_0 interferences.txt", sep = "\t", row.names = TRUE, col.names = NA)
 write.table(df_Calpoints, file = "All_NH3N2O_0 interferences.txt", sep = "\t", row.names = TRUE, col.names = NA)
 
-
-setwd("C:/Users/au615105/OneDrive - Aarhus universitet/Pablo García/Papers")
+##Read text files
 df_N2ONH3_means<-read.table(file="Control_NH3N2O interferences.txt",header=TRUE, sep = "\t")
 df_N2ONH3<-read.table(file="All_NH3N2O interferences.txt",header=TRUE, sep = "\t")
 df_N2ONH3_means_cal<-read.table(file="Control_NH3N2O_0 interferences.txt",header=TRUE, sep = "\t")
 df_N2ONH3_cal<-read.table(file="All_NH3N2O_0 interferences.txt",header=TRUE, sep = "\t")
 df_N2ONH3i_cal100<-read.table(file="NH3i_cal100.txt",header=TRUE, sep = "\t")
-df_N2ONH3i_cal100_2<-read.table(file="NH3i_cal100_2.txt",header=TRUE, sep = "\t")
-df_N2ONH3i_cal10<-read.table(file="NH3i_cal10.txt",header=TRUE, sep = "\t")
-df_N2ONH3i_cal10_2<-read.table(file="NH3i_cal10_2.txt",header=TRUE, sep = "\t")
 df_N2ONH3$Time_All<-anytime(df_N2ONH3$Time_All_N2ONH3)
 df_N2ONH3_cal$Time_Cal<-anytime(df_N2ONH3_cal$Time_Cal_N2ONH3)
 df_CH4NH3<-read.table(file="CH4i_cal100.txt",header=TRUE, sep = "\t")
@@ -261,17 +228,12 @@ Sd_CH4<-c(df_CH4NH3$Sd_CH4i,df_CH4NH3$Sd_BPi)
 df_CH4_BGlab<-cbind.data.frame(x,y,Sd_CH4,Sd_NH3,Group)
 
 ### NH3 Interferences on background N2O ###
-x<-c(df_N2ONH3i_cal100$Measured_NH3,df_N2ONH3i_cal100_2$Measured_NH3,df_N2ONH3i_cal10$Measured_NH3,df_N2ONH3i_cal10_2$Measured_NH3)
-y<-c(df_N2ONH3i_cal100$Measured_N2O,df_N2ONH3i_cal100_2$Measured_N2O,df_N2ONH3i_cal10$Measured_N2O,df_N2ONH3i_cal10_2$Measured_N2O)
-Sd_N2O<-c(df_N2ONH3i_cal100$Sd_N2O,df_N2ONH3i_cal100_2$Sd_N2O,df_N2ONH3i_cal10$Sd_N2O,df_N2ONH3i_cal10_2$Sd_N2O)
-Sd_NH3<-c(df_N2ONH3i_cal100$Sd_NH3,df_N2ONH3i_cal100_2$Sd_NH3,df_N2ONH3i_cal10$Sd_NH3,df_N2ONH3i_cal10_2$Sd_NH3)
-Group<-c(rep("100ppm cylinder 1",nrow(df_N2ONH3i_cal100)),rep("100ppm cylinder 2",nrow(df_N2ONH3i_cal100_2)),rep("10ppm cylinder 1",nrow(df_N2ONH3i_cal10)),rep("10ppm cylinder 2",nrow(df_N2ONH3i_cal10_2)))
-df_N2O_BG<-cbind.data.frame(x,y,Sd_N2O,Sd_NH3,Group)
+x<-c(df_N2ONH3i_cal100$Measured_NH3)
+y<-c(df_N2ONH3i_cal100$Measured_N2O)
+Sd_N2O<-c(df_N2ONH3i_cal100$Sd_N2O)
+Sd_NH3<-c(df_N2ONH3i_cal100$Sd_NH3)
 Group<-rep("N2O",nrow(df_N2ONH3i_cal100))
-x<-x[1:13]
-y<-y[1:13]
-Sd_N2O<-Sd_N2O[1:13]
-Sd_NH3<-Sd_NH3[1:13]
+
 df_N2O_BGlab<-cbind.data.frame(x,y,Sd_N2O,Sd_NH3,Group)
 
 
