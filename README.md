@@ -31,15 +31,15 @@ Use scripts `PTRdata_Picarrodata_Timeallign_Example.R` and `VOC_Interferences.R`
 # Links to paper
 This section give the sources of tables and figures presented in the paper.
 
-| Paper component          |  Repo source                             |  Repo scripts             |
-|-----------------         |-----------------                         |---------------            |
-|    Figure 3              | `plots-meas/01_flux_wind_meas.pdf`       | `scripts-meas/plot_big.R` |
-|    Figure 4              | `plots-meas/30_emis_vs_AER.pdf`          | `scripts-meas/plot.R`     |
-|    Figure 5              | `plots-ALFAM2/54_flux_comp_sel_zoom.pdf` | `scripts-ALFAM2/plot.R`   |
-|    Figure S1             | `plots-pH/40_surface_pH.pdf`             | `scripts-pH/plot.R`       |
-|    Figure S2             | `plots-pH/40_surface_pH.pdf`             | `scripts-pH/plot.R`       |
-|    Figure S3             | `plots-pH/40_surface_pH.pdf`             | `scripts-pH/plot.R`       |
-|    Figure S4             | `plots-ALFAM2/60_error_comp.pdf`         | `scripts-ALFAM2/plot.R`   |
-|    Figure S5             | `plots-ALFAM2/53_flux_comp_sel.pdf`      | `scripts-ALFAM2/plot.R`   |
-|    Figure S6             | `plots-ALFAM2/80_r1.pdf`                 | `scripts-ALFAM2/plot.R`   |
+| Paper component          |  Repo source                      |  Repo scripts             |
+|-----------------         |-----------------                  |---------------            |
+|    Figure 3              | `Figures.pdf`                     | `.R` |
+|    Figure 4              | `Figures.pdf`                     | `.R`     |
+|    Figure 5              | `Figures.pdf`                     | `.R`   |
+|    Figure S1             | `Supplementary information.pdf`   | `.R`       |
+|    Figure S2             | `Supplementary information.pdf`   | `.R`       |
+|    Figure S3             | `Supplementary information.pdf`   | `.R`       |
+|    Figure S4             | `Supplementary information.pdf`   | `.R`   |
+|    Figure S5             | `Supplementary information.pdf`   | `.R`   |
+|    Figure S6             | `Supplementary information.pdf`   | `.R`   |
 
