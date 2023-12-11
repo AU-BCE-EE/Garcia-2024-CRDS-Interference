@@ -6,7 +6,7 @@ Jesper Nørlem Kamp.
 Contact information here: <https://au.dk/jk@bce>.
 
 # Contributors
-Pablo Garcia <https://au.dk/au615105@bce>
+Pablo Garcia <https://au.dk/pg@bce>
 
 Anna Holm Støckler <https://au.dk/anna@bce>
 
